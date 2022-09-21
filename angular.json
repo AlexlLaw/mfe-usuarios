@@ -1,0 +1,151 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"cli": {
+		"packageManager": "yarn",
+		"analytics": false,
+		"schematicCollections": "@angular-eslint/schematics"
+	},
+	"newProjectRoot": "projects",
+	"projects": {
+		"usuario": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"inlineTemplate": true,
+					"inlineStyle": true,
+					"skipTests": true
+				},
+				"@schematics/angular:class": {
+					"skipTests": true
+				},
+				"@schematics/angular:directive": {
+					"skipTests": true
+				},
+				"@schematics/angular:guard": {
+					"skipTests": true
+				},
+				"@schematics/angular:interceptor": {
+					"skipTests": true
+				},
+				"@schematics/angular:pipe": {
+					"skipTests": true
+				},
+				"@schematics/angular:resolver": {
+					"skipTests": true
+				},
+				"@schematics/angular:service": {
+					"skipTests": true
+				}
+			},
+			"root": "projects/usuario",
+			"sourceRoot": "projects/usuario/src",
+			"prefix": "ib",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/mfe/usuario",
+						"index": "projects/usuario/src/index.html",
+						"main": "projects/usuario/src/main.ts",
+						"polyfills": "projects/usuario/src/polyfills.ts",
+						"tsConfig": "projects/usuario/tsconfig.app.json",
+						"assets": [
+							"projects/usuario/src/favicon.ico",
+							"projects/usuario/src/assets"
+						],
+						"styles": [
+							"projects/usuario/src/styles.css"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "projects/usuario/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "projects/usuario/src/environments/environment.ts",
+									"with": "projects/usuario/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/usuario/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+        },
+        "e2e": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "usuario:build",
+            "extraWebpackConfig": "./cypress/coverage.webpack.js"
+          }
+        },
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "usuario:build:production",
+							"extraWebpackConfig": "projects/usuario/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "usuario:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4100,
+						"publicHost": "http://localhost:4100",
+						"extraWebpackConfig": "projects/usuario/webpack.config.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"projects/usuario/**/*.ts",
+							"projects/usuario/**/*.html"
+						]
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "usuario:build",
+						"extraWebpackConfig": "projects/usuario/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-builders/jest:run",
+					"options": {
+						"main": "projects/usuario/src/test.ts",
+						"tsConfig": "./tsconfig.spec.json",
+						"codeCoverage": true
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "usuario"
+}
