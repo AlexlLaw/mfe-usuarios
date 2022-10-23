@@ -38,7 +38,7 @@ module.exports = {
       name: "usuario",
       filename: "remoteEntry.js",
       exposes: {
-        "./Module": "./projects/usuario/src/app/features/home/home.module.ts",
+        "./Module": "./projects/usuario/src/app/core/components/container-auth/container-auth.module.ts",
       },
       shared: share({
         "@angular/core": {

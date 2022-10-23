@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'usuario', pathMatch: 'full'},
   {
-    path: 'usuarios',
-    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
-  },
+    path: '',
+    loadChildren: () => import('./core/components/container-auth/container-auth.module').then(m => m.ContainerAuthModule),   
+  }
 ];
 
 @NgModule({

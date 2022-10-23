@@ -1,0 +1,61 @@
+<div class="form">
+    <h1>Formulario de usuario</h1>
+
+
+<form [formGroup]="form" (ngSubmit)="chooseMethod()">
+
+    <div class="textfield">
+        <input type="text" name="cpf" id="cpf" formControlName="cpf" inputmode="text" required maxlength="11">
+        <label for="cpf"> CPF</label>
+    </div>
+
+    
+<!-- 
+    <div *ngIf="form.get('cpf')?.errors?.['required'] && form.get('cpf')?.touched">
+        cpf obrigatório
+    </div>  -->
+
+    <div class="textfield">
+        <input type="text" class="placeholder" name="nome" id="nome"  formControlName="nome" inputmode="text" required>
+        <label for="nome"> Nome </label>
+    </div>
+
+    <!-- <div *ngIf="form.get('nome')?.errors?.['required'] && form.get('nome')?.touched">
+        nome obrigatório
+    </div> -->
+
+    <div class="textfield ">
+        <input type="text" name="sobrenome" id="sobrenome"  formControlName="sobrenome" inputmode="text" required>
+        <label for="sobrenome"> Sobrenome </label>
+    </div>
+
+    <!-- <div *ngIf="form.get('sobrenome')?.errors?.['required'] && form.get('sobrenome')?.touched">
+        sobrenome obrigatório
+    </div> -->
+
+    <div class="textfield ">
+        <input type="text" name="restricoes" id="restricoes"  formControlName="restricoes" inputmode="text" required>
+        <label for="restricoes"> Restricoes </label>
+    </div>
+
+    <!-- <div *ngIf="form.get('restricoes')?.errors?.['required'] && form.get('restricoes')?.touched">
+        restricoes obrigatório
+    </div> -->
+
+    <div class="textfield ">
+        <input type="password" name="senha" id="senha"  formControlName="senha" required>
+        <label for="senha"> Senha </label>
+    </div>
+
+    <!-- <div *ngIf="form.get('senha')?.errors?.['required'] && form.get('senha')?.touched">
+        Senha obrigatório
+    </div>  -->
+
+    <button >
+        <a routerLink="/usuarios">voltar</a>
+        
+    </button>
+    <button type="submit">Cadastrar</button>
+</form> 
+
+</div>

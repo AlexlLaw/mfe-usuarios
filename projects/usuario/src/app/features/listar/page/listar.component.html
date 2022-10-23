@@ -1,0 +1,17 @@
+<a [routerLink]="['cadastrar']">Adicionar</a>
+<table>
+    <thead>
+        <th>nome</th>
+        <th>cpf</th>
+        <th>ações</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data">
+            <td>{{ item.nome }}</td>
+            <td>{{ item.cpf }}</td>
+            <td><button (click)="delete(item.id)">deletar</button> <a [routerLink]="[item.id, 'editar']">Editar</a></td>
+        </tr>
+    </tbody>
+</table>
+
+

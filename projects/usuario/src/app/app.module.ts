@@ -1,10 +1,8 @@
-import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 
 @NgModule({
   declarations: [
@@ -13,7 +11,6 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -21,6 +18,6 @@ import { AppComponent } from './app.component';
 
 export class AppModule {
   constructor() {
-    console.log('iniciando aplication');
+    console.log('iniciando aplication MFE-usuarios');
   }
 }
