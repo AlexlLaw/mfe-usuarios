@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListarUsuariosDto } from '../../../core/interfaces/dto/listar-usuarios-dto';
+import { Usuario } from '../../../core/interfaces/dto/usuario.interface';
 import { UsuarioService } from '../../../core/services/usuario/v1/usuario.service';
 
 
@@ -10,7 +10,7 @@ import { UsuarioService } from '../../../core/services/usuario/v1/usuario.servic
 })
 export class ListarComponent implements OnInit {
 
-  public data: ListarUsuariosDto[] = [];
+  public data!: Usuario.listar;
 
   constructor(private usuarioService: UsuarioService,) { }
 
@@ -19,12 +19,12 @@ export class ListarComponent implements OnInit {
   }
 
   public getAll(): void {
-    this.usuarioService.get().subscribe((res: ListarUsuariosDto[]) => {
+    this.usuarioService.get().subscribe((res: Usuario.listar) => {
       this.data = res;
     });
   }
 
-  public delete(id: number) : void {
+  public delete(id: string) : void {
     this.usuarioService.delete(id).subscribe(() => {
       alert('usuario removido com sucesso');
       this.getAll();

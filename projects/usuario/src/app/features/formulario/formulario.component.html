@@ -1,61 +1,68 @@
 <div class="form">
     <h1>Formulario de usuario</h1>
+    <form [formGroup]="formularioForm" (ngSubmit)="chooseMethod()">
 
+        <div class="textfield">
+            <input type="text" name="cpf" id="cpf" formControlName="cpf" inputmode="text" required maxlength="11">
+            <label for="cpf"> CPF</label>
+        </div>
 
-<form [formGroup]="form" (ngSubmit)="chooseMethod()">
+        <div class="" *ngIf="isFieldValid(formularioForm, 'cpf')">
+            {{ formularioForm.getFirstErrorFrom('cpf', 'cpf') }}
+        </div> 
 
-    <div class="textfield">
-        <input type="text" name="cpf" id="cpf" formControlName="cpf" inputmode="text" required maxlength="11">
-        <label for="cpf"> CPF</label>
-    </div>
+        <div class="textfield">
+            <input type="text" class="placeholder" name="name" id="name"  formControlName="name" inputmode="text" required>
+            <label for="name"> Nome </label>
+        </div>
 
-    
-<!-- 
-    <div *ngIf="form.get('cpf')?.errors?.['required'] && form.get('cpf')?.touched">
-        cpf obrigatório
-    </div>  -->
+        <div class="" *ngIf="isFieldValid(formularioForm, 'name')">
+            {{ formularioForm.getFirstErrorFrom('name', 'name') }}
+        </div> 
 
-    <div class="textfield">
-        <input type="text" class="placeholder" name="nome" id="nome"  formControlName="nome" inputmode="text" required>
-        <label for="nome"> Nome </label>
-    </div>
+        <div class="textfield ">
+            <input type="text" name="lastName" id="lastName"  formControlName="lastName" inputmode="text" required>
+            <label for="lastName"> Sobrenome </label>
+        </div>
 
-    <!-- <div *ngIf="form.get('nome')?.errors?.['required'] && form.get('nome')?.touched">
-        nome obrigatório
-    </div> -->
+        <div class="" *ngIf="isFieldValid(formularioForm, 'lastName')">
+            {{ formularioForm.getFirstErrorFrom('lastName', 'lastName') }}
+        </div> 
 
-    <div class="textfield ">
-        <input type="text" name="sobrenome" id="sobrenome"  formControlName="sobrenome" inputmode="text" required>
-        <label for="sobrenome"> Sobrenome </label>
-    </div>
+        <div class="textfield ">
+            <input type="text" name="restricoes" id="restrictions"  formControlName="restrictions" inputmode="text" required>
+            <label for="restrictions"> Restrição </label>
+        </div>
 
-    <!-- <div *ngIf="form.get('sobrenome')?.errors?.['required'] && form.get('sobrenome')?.touched">
-        sobrenome obrigatório
-    </div> -->
+        <div class="" *ngIf="isFieldValid(formularioForm, 'restrictions')">
+            {{ formularioForm.getFirstErrorFrom('restrictions', 'restrictions') }}
+        </div> 
 
-    <div class="textfield ">
-        <input type="text" name="restricoes" id="restricoes"  formControlName="restricoes" inputmode="text" required>
-        <label for="restricoes"> Restricoes </label>
-    </div>
+        <div class="textfield ">
+            <input type="password" name="password" id="password"  formControlName="password" required>
+            <label for="password"> Senha </label>
+        </div>
 
-    <!-- <div *ngIf="form.get('restricoes')?.errors?.['required'] && form.get('restricoes')?.touched">
-        restricoes obrigatório
-    </div> -->
+        <div class="" *ngIf="isFieldValid(formularioForm, 'password')">
+            {{ formularioForm.getFirstErrorFrom('password', 'password') }}
+        </div> 
 
-    <div class="textfield ">
-        <input type="password" name="senha" id="senha"  formControlName="senha" required>
-        <label for="senha"> Senha </label>
-    </div>
+        <div class="textfield ">
+            <input type="text" name="wage" id="wage"  formControlName="wage" required>
+            <label for="wage"> Salario </label>
+        </div>
 
-    <!-- <div *ngIf="form.get('senha')?.errors?.['required'] && form.get('senha')?.touched">
-        Senha obrigatório
-    </div>  -->
+        <div class="" *ngIf="isFieldValid(formularioForm, 'wage')">
+            {{ formularioForm.getFirstErrorFrom('wage', 'wage') }}
+        </div> 
 
-    <button >
-        <a routerLink="/usuarios">voltar</a>
-        
-    </button>
-    <button type="submit">Cadastrar</button>
-</form> 
+        <button>
+            <a routerLink="/usuarios">voltar</a>
+        </button>
+
+        <button type="submit">
+            Cadastrar
+        </button>
+    </form> 
 
 </div>

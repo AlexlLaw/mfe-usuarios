@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { UsuarioService } from '../../core/services/usuario/v1/usuario.service';
+import { FormularioForm } from './formulario.form';
 
 @Component({
   selector: 'ib-formulario',
@@ -10,22 +11,12 @@ import { UsuarioService } from '../../core/services/usuario/v1/usuario.service';
   styleUrls: ['./formulario.component.scss'],
 })
 export class FormularioComponent implements OnInit {
-  
-  public controls = {
-    cpf: new FormControl(null, Validators.required),
-    nome: new FormControl(null, Validators.required),
-    sobrenome: new FormControl(null, Validators.required),
-    senha: new FormControl(),
-    ativo: new FormControl(true),
-    restricoes: new FormControl('administrador'),
-    salario: new FormControl(123456)
-  };
-  
-  public form: FormGroup;
+
   public id: string;
+  private _form!: FormularioForm;
 
   constructor(private usuarioService: UsuarioService, private router: Router, private route: ActivatedRoute) {
-    this.form = new FormGroup(this.controls);
+    this._form = new FormularioForm();
     this.id = this.route.snapshot.paramMap.get('id')!;
   }
   
@@ -33,9 +24,14 @@ export class FormularioComponent implements OnInit {
     this.getById(this.id);
   }
 
+  public get formularioForm(): FormularioForm {
+    return this._form;
+  }
+
   public getById(id: string): void {
     this.usuarioService.getById(id).subscribe((res: any) => {
-      this.patchValueForm(res, this.form);
+      console.log(res);
+      this.patchValueForm(res, this.formularioForm);
     }
     );
   }
@@ -47,7 +43,6 @@ export class FormularioComponent implements OnInit {
       }
     });
   }
-
  
   public chooseMethod() {
     if (this.id) {
@@ -59,10 +54,10 @@ export class FormularioComponent implements OnInit {
     this.create();
   }
 
-
   public create(): void {
-    if (this.form.valid) {
-      this.usuarioService.post(this.form.getRawValue()).subscribe(() => {
+    this.formularioForm.markAllAsTouched();
+    if (this.formularioForm.valid) {
+      this.usuarioService.post(this.formularioForm.getDadosEnvioCreate()).subscribe(() => {
         alert('cadastrado com sucesso');
         this.router.navigate(['usuarios/']);
       });
@@ -70,11 +65,16 @@ export class FormularioComponent implements OnInit {
   }
   
   public update(): void {
-    if (this.form.valid) {
-      this.usuarioService.put(this.id, this.form.getRawValue()).subscribe(() => {
+    this.formularioForm.markAllAsTouched();
+    if (this.formularioForm.valid) {
+      this.usuarioService.put(this.id, this.formularioForm.getDadosEnvioUpdate()).subscribe(() => {
         alert('atualizado com sucesso');
         this.router.navigate(['usuarios/']);
       });
     }
+  }
+
+  public isFieldValid(form: FormGroup, field: string) {
+    return !form.get(field)!.valid && form.get(field)!.dirty;
   }
 }

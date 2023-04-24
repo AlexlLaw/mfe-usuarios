@@ -1,17 +1,21 @@
 <a [routerLink]="['cadastrar']">Adicionar</a>
 <table>
     <thead>
-        <th>nome</th>
-        <th>cpf</th>
-        <th>ações</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Permissão</th>
+        <th>Salario</th>
+        <th>Ativo</th>
+        <th>Ações</th>
     </thead>
     <tbody>
-        <tr *ngFor="let item of data">
-            <td>{{ item.nome }}</td>
+        <tr *ngFor="let item of data.content">
+            <td>{{ item.name  }}  {{ item.lastName }}</td>
             <td>{{ item.cpf }}</td>
+            <td>{{ item.restrictions }}</td>
+            <td>{{ item.wage }}</td>
+            <td>{{ item.active }}</td>
             <td><button (click)="delete(item.id)">deletar</button> <a [routerLink]="[item.id, 'editar']">Editar</a></td>
         </tr>
     </tbody>
 </table>
-
-

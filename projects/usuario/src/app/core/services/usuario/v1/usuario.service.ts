@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 import { BaseService } from '../../base.service';
 
 @Injectable({
@@ -10,6 +9,6 @@ import { BaseService } from '../../base.service';
 export class UsuarioService extends BaseService<any> {
 
   constructor(protected http: HttpClient) {
-    super(http, 'Usuario');
+    super(http, 'user');
   }
 }
